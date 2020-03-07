@@ -7,7 +7,7 @@ from IPython.utils.tempdir import TemporaryDirectory
 from jupyter_client.kernelspec import KernelSpecManager
 
 
-kernel_json = {"argv":[sys.executable,"-m","jupyter-mysql-kernel", "-f", "{connection_file}"],
+kernel_json = {"argv":[sys.executable, "-m", "mysql_kernel", "-f", "{connection_file}"],
                "display_name":"Mysql",
                "language":"mysql"}
 
