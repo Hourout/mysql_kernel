@@ -1,2 +1,4 @@
-__version__ = '0.1.0'
+"""A mysql kernel for Jupyter"""
+
+from .kernel import __version__
 __author__ = 'JinQing Lee'
