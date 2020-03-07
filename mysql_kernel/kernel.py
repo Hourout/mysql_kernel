@@ -1,6 +1,4 @@
-import re
 import os
-import sys
 import json
 
 import pymysql
@@ -9,7 +7,6 @@ from ipykernel.kernelbase import Kernel
 
 __version__ = '0.1.0'
 
-version_pat = re.compile(r'version (\d+(\.\d+)+)')
 
 class MysqlParser():
     def __init__(self, display, **kwargs):
@@ -35,20 +32,12 @@ class MysqlParser():
 class MysqlKernel(Kernel):
     implementation = 'jupyter-mysql-kernel'
     implementation_version = __version__
+    language = 'mysql'
+    language_version = 'latest'
     language_info = {'name': 'mysql',
                      'mimetype': 'text/x-sh',
                      'file_extension': '.sql'}
-    @property
-    def language_version(self):
-        return version_pat.search(self.banner).group(1)
-
-    _banner = None
-
-    @property
-    def banner(self):
-        if self._banner is None:
-            self._banner = 'mysql kernel'
-        return self._banner
+    banner = 'mysql kernel'
 
     mysql_setting_file = os.path.join(os.path.expanduser('~'), '.local/config/mysql_config.json')
     mysql_config = {'user': 'root',
@@ -56,7 +45,7 @@ class MysqlKernel(Kernel):
                     'port': '3306',
                     'charset': 'utf8',
                     'password': '',
-                    'display': 'prettytable'}
+                    'display': 'pandas'}
 
     def __init__(self, **kwargs):
         Kernel.__init__(self, **kwargs)
@@ -129,10 +118,7 @@ class MysqlKernel(Kernel):
         sql = code.rstrip()
         output = ''
         try:
-            splitString = "\n"
-            if ";\n" in sql or sql.endswith(";"):
-                splitString = ";\n"
-
+            splitString = ";\n" if ";\n" in sql or sql.endswith(";") else "\n"
             for v in sql.split(splitString):
                 v = v.rstrip()
                 l = v.lower()
@@ -150,3 +136,5 @@ class MysqlKernel(Kernel):
         except Exception as msg:
             self.output(format(msg))
             return self.err('Error executing code ' + sql)
+
+    
