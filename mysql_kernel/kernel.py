@@ -52,7 +52,7 @@ class MysqlKernel(Kernel):
                     if self.engine:
                         output = pd.read_sql(l, self.engine).to_html()
                     else:
-                        out = 'Unable to connect to Mysql server. Check that the server is running.'
+                        output = 'Unable to connect to Mysql server. Check that the server is running.'
             self.output(output)
             return self.ok()
         except Exception as msg:
