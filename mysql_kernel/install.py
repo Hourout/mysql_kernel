@@ -9,7 +9,7 @@ from jupyter_client.kernelspec import KernelSpecManager
 
 kernel_json = {"argv":[sys.executable, "-m", "mysql_kernel", "-f", "{connection_file}"],
                "display_name":"Mysql",
-               "language":"mysql"}
+               "language":"sql"}
 
 def install_my_kernel_spec(user=True, prefix=None):
     with TemporaryDirectory() as td:
