@@ -39,14 +39,18 @@ class MysqlKernel(Kernel):
 
     def do_execute(self, code, silent, store_history=True, user_expressions=None, allow_stdin=False):
         self.silent = silent
+        output = ''
         if not code.strip():
             return self.ok()
         sql = code.rstrip()+('' if code.rstrip().endswith(";") else ';')
+        self.output(sql)
         try:
             for v in sql.split(";"):
+                self.output(v)
                 v = v.rstrip()
                 l = v.lower()
                 if l.startswith('mysql://'):
+                    self.output(f'mysql+py{v}')
                     self.engine = sa.create_engine(f'mysql+py{v}')
                 else:
                     if self.engine:
