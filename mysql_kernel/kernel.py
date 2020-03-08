@@ -43,20 +43,18 @@ class MysqlKernel(Kernel):
         if not code.strip():
             return self.ok()
         sql = code.rstrip()+('' if code.rstrip().endswith(";") else ';')
-        self.output(sql)
         try:
             for v in sql.split(";"):
-                self.output(v)
                 v = v.rstrip()
                 l = v.lower()
-                if l.startswith('mysql://'):
-                    self.output(f'mysql+py{v}')
-                    self.engine = sa.create_engine(f'mysql+py{v}')
-                else:
-                    if self.engine:
-                        output = pd.read_sql(l, self.engine).to_html()
+                if len(l)>0:
+                    if l.startswith('mysql://'):
+                        self.engine = sa.create_engine(f'mysql+py{v}')
                     else:
-                        output = 'Unable to connect to Mysql server. Check that the server is running.'
+                        if self.engine:
+                            output = pd.read_sql(l, self.engine).to_html()
+                        else:
+                            output = 'Unable to connect to Mysql server. Check that the server is running.'
             self.output(output)
             return self.ok()
         except Exception as msg:
