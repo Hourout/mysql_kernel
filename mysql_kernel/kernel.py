@@ -5,7 +5,6 @@ from ipykernel.kernelbase import Kernel
 
 __version__ = '0.1.0'
 
-
 class MysqlKernel(Kernel):
     implementation = 'mysql_kernel'
     implementation_version = __version__
@@ -18,7 +17,7 @@ class MysqlKernel(Kernel):
 
     def __init__(self, **kwargs):
         Kernel.__init__(self, **kwargs)
-        self.engine = sa.create_engine('mysql+pymysql://127.0.0.1:3306')
+        self.engine = False
         
     def output(self, output):
         if not self.silent:
@@ -50,11 +49,12 @@ class MysqlKernel(Kernel):
                 if l.startswith('mysql://'):
                     self.engine = sa.create_engine(f'mysql+py{v}')
                 else:
-                    output = pd.read_sql(l, self.engine).to_html()
+                    if self.engine:
+                        output = pd.read_sql(l, self.engine).to_html()
+                    else:
+                        out = 'Unable to connect to Mysql server. Check that the server is running.'
             self.output(output)
             return self.ok()
         except Exception as msg:
             self.output(str(msg))
             return self.err('Error executing code ' + sql)
-
-    
