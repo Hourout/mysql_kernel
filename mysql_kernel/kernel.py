@@ -39,12 +39,12 @@ class MysqlKernel(Kernel):
 
     def do_execute(self, code, silent, store_history=True, user_expressions=None, allow_stdin=False):
         self.silent = silent
-        if not self.silent:
-            self.output(code)
+        if not code.strip():
             return self.ok()
-#         if not code.strip():
-#             return self.ok()
-#         sql = code.rstrip()+('' if sql.endswith(";") else ';')
+        sql = code.rstrip()+('' if sql.endswith(";") else ';')
+        if not self.silent:
+            self.output(sql)
+            return self.ok()
 #         try:
 #             for v in sql.split(";"):
 #                 v = v.rstrip()
