@@ -39,22 +39,25 @@ class MysqlKernel(Kernel):
 
     def do_execute(self, code, silent, store_history=True, user_expressions=None, allow_stdin=False):
         self.silent = silent
-        if not code.strip():
+        if not self.silent:
+            self.output(code)
             return self.ok()
-        sql = code.rstrip()+('' if sql.endswith(";") else ';')
-        try:
-            for v in sql.split(";"):
-                v = v.rstrip()
-                l = v.lower()
-                if l.startswith('mysql://'):
-                    self.engine = sa.create_engine(f'mysql+py{v}')
-                else:
-                    if self.engine:
-                        output = pd.read_sql(l, self.engine).to_html()
-                    else:
-                        output = 'Unable to connect to Mysql server. Check that the server is running.'
-            self.output(output)
-            return self.ok()
-        except Exception as msg:
-            self.output(str(msg))
-            return self.err('Error executing code ' + sql)
+#         if not code.strip():
+#             return self.ok()
+#         sql = code.rstrip()+('' if sql.endswith(";") else ';')
+#         try:
+#             for v in sql.split(";"):
+#                 v = v.rstrip()
+#                 l = v.lower()
+#                 if l.startswith('mysql://'):
+#                     self.engine = sa.create_engine(f'mysql+py{v}')
+#                 else:
+#                     if self.engine:
+#                         output = pd.read_sql(l, self.engine).to_html()
+#                     else:
+#                         output = 'Unable to connect to Mysql server. Check that the server is running.'
+#             self.output(output)
+#             return self.ok()
+#         except Exception as msg:
+#             self.output(str(msg))
+#             return self.err('Error executing code ' + sql)
