@@ -7,7 +7,7 @@
 ![contributors](https://img.shields.io/github/contributors/Hourout/mysql_kernel)
 ![downloads](https://img.shields.io/pypi/dm/mysql_kernel.svg)
 
-Jupyter Kernel for Mysql
+Mysql Kernel for Jupyter
 
 ## Installation
 
@@ -34,7 +34,7 @@ ALL DONE! 🎉🎉🎉
 ```
 jupyter notebook
 ```
-![](image/mysql1.png)
+<img src="image/mysql1.png" width = "700" height = "300" />
 
 ### step1: you should set mysql host and port
 
