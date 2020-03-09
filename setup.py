@@ -19,7 +19,7 @@ setup(name='mysql_kernel',
       author_email='hourout@163.com',
       keywords=['jupyter_kernel', 'mysql_kernel'],
       license='Apache License Version 2.0',
-      install_requires=['pymysql', 'prettytable', 'pandas', 'jupyter'],
+      install_requires=['pymysql', 'sqlalchemy', 'pandas', 'jupyter'],
       classifiers = [
           'Framework :: IPython',
           'License :: OSI Approved :: Apache Software License',
