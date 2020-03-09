@@ -7,6 +7,12 @@ Jupyter Kernel for Mysql
 pip3 install mysql_kernel
 ```
 
+To get the newest one from this repo (note that we are in the alpha stage, so there may be frequent updates), type:
+
+```
+pip3 install git+git://github.com/Hourout/mysql_kernel.git
+```
+
 Add kernel to your jupyter:
 
 ```
@@ -30,4 +36,4 @@ jupyter notebook
 ## Quote 
 kernel logo
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Antu_mysql-workbench.svg/1024px-Antu_mysql-workbench.svg.png" width = "32" height = "32" />
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FyZrl5%2FbtqwEwV2HHb%2Fd8u9PLWcIxXLJ8BkqvV881%2Fimg.jpg" width = "32" height = "32" />
