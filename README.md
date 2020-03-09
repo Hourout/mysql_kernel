@@ -9,6 +9,8 @@
 
 Mysql Kernel for Jupyter
 
+[中文介绍](document/chinese.md)
+
 ## Installation
 
 ```
