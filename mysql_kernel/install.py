@@ -17,7 +17,7 @@ def install_my_kernel_spec(user=True, prefix=None):
         os.chmod(td, 0o755)
         with open(os.path.join(td, 'kernel.json'), 'w') as f:
             json.dump(kernel_json, f, sort_keys=True)
-        with open(os.path.join(td, 'logo_64x64.png'), 'wb') as f:
+        with open(os.path.join(td, 'logo-64x64.png'), 'wb') as f:
             f.write(base64.b64decode(kernel_logo))
         print('Installing Jupyter Mysql kernel spec.')
         KernelSpecManager().install_kernel_spec(td, 'Mysql', user=user, replace=True, prefix=prefix)
