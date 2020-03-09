@@ -1,7 +1,15 @@
 # Mysql_kernel
+
+![PyPI version](https://img.shields.io/pypi/pyversions/mysql_kernel.svg)
+![Github license](https://img.shields.io/github/license/Hourout/mysql_kernel.svg)
+[![PyPI](https://img.shields.io/pypi/v/mysql_kernel.svg)](https://pypi.python.org/pypi/mysql_kernel)
+![PyPI format](https://img.shields.io/pypi/format/mysql_kernel.svg)
+![contributors](https://img.shields.io/github/contributors/Hourout/mysql_kernel)
+![downloads](https://img.shields.io/pypi/dm/mysql_kernel.svg)
+
 Jupyter Kernel for Mysql
 
-## Install
+## Installation
 
 ```
 pip3 install mysql_kernel
