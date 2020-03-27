@@ -13,6 +13,7 @@ Mysql Kernel for Jupyter
 
 ## Installation
 
+#### step1:
 ```
 pip3 install mysql_kernel
 ```
@@ -23,6 +24,7 @@ To get the newest one from this repo (note that we are in the alpha stage, so th
 pip3 install git+git://github.com/Hourout/mysql_kernel.git
 ```
 
+#### step2:
 Add kernel to your jupyter:
 
 ```
