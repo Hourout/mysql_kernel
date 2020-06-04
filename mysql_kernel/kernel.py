@@ -65,6 +65,8 @@ class MysqlKernel(Kernel):
                         pd.io.sql.execute(l, con=self.engine)
                     elif l.startswith('alter table '):
                         pd.io.sql.execute(l, con=self.engine)
+                    elif l.startswith('insert into '):
+                        pd.io.sql.execute(l, con=self.engine)
                     else:
                         if self.engine:
                             output = pd.read_sql(l, self.engine).to_html()
