@@ -3,7 +3,7 @@ import sqlalchemy as sa
 from ipykernel.kernelbase import Kernel
 
 
-__version__ = '0.1.0'
+__version__ = '0.2.0'
 
 class MysqlKernel(Kernel):
     implementation = 'mysql_kernel'
@@ -49,7 +49,22 @@ class MysqlKernel(Kernel):
                 l = v.lower()
                 if len(l)>0:
                     if l.startswith('mysql://'):
-                        self.engine = sa.create_engine(f'mysql+py{v}')
+                        if l.count('@')>1:
+                            self.output("Connection failed, The Mysql address cannot have two '@'.")
+                        else:
+                            self.engine = sa.create_engine(f'mysql+py{v}')
+                    elif l.startswith('create database '):
+                        pd.io.sql.execute(l, con=self.engine)
+                    elif l.startswith('drop database '):
+                        pd.io.sql.execute(l, con=self.engine)
+                    elif l.startswith('create table '):
+                        pd.io.sql.execute(l, con=self.engine)
+                    elif l.startswith('drop table '):
+                        pd.io.sql.execute(l, con=self.engine)
+                    elif l.startswith('delete '):
+                        pd.io.sql.execute(l, con=self.engine)
+                    elif l.startswith('alter table '):
+                        pd.io.sql.execute(l, con=self.engine)
                     else:
                         if self.engine:
                             output = pd.read_sql(l, self.engine).to_html()
