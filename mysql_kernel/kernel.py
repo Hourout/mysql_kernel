@@ -3,7 +3,7 @@ import sqlalchemy as sa
 from ipykernel.kernelbase import Kernel
 
 
-__version__ = '0.2.0'
+__version__ = '0.3.0'
 
 class MysqlKernel(Kernel):
     implementation = 'mysql_kernel'
@@ -69,7 +69,10 @@ class MysqlKernel(Kernel):
                         pd.io.sql.execute(l, con=self.engine)
                     else:
                         if self.engine:
-                            output = pd.read_sql(l, self.engine).to_html()
+                            if l.startswith('select ') and ' limit ' not in l:
+                                output = pd.read_sql(l+' limit 1000', self.engine).to_html()
+                            else:
+                                output = pd.read_sql(l, self.engine).to_html()
                         else:
                             output = 'Unable to connect to Mysql server. Check that the server is running.'
             self.output(output)
