@@ -33,6 +33,26 @@ python3 -m mysql_kernel.install
 
 ALL DONE! 🎉🎉🎉
 
+## Uninstall
+
+#### step1:
+
+View and remove mysql kernel
+```
+jupyter kernelspec list
+jupyter kernelspec remove mysql
+```
+
+#### step2:
+uninstall mysql kernel:
+
+```
+pip3 uninstall mysql-kernel
+```
+
+ALL DONE! 🎉🎉🎉
+
+
 ## Using
 
 ```
