@@ -61,6 +61,13 @@ jupyter notebook
 <img src="image/mysql1.png" width = "700" height = "300" />
 
 ### step1: you should set mysql host and port
+```
+mysql://user:password@host:port
+
+or
+
+mysql://host:port
+```
 
 ### step2: write your mysql code
 
