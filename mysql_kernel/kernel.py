@@ -3,7 +3,7 @@ import sqlalchemy as sa
 from ipykernel.kernelbase import Kernel
 
 
-__version__ = '0.4.0'
+__version__ = '0.4.1'
 
 class MysqlKernel(Kernel):
     implementation = 'mysql_kernel'
