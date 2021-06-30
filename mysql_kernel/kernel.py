@@ -69,6 +69,10 @@ class MysqlKernel(Kernel):
                         pd.io.sql.execute(v, con=self.engine)
                     else:
                         if self.engine:
+                            if if ' like ' in l:
+                                if l[l.find(' like ')+6:].count('%')<4:
+                                    self.output("sql code ' like %xx%' should be replace ' like %%xx%%'.")
+                                    return self.ok()
                             if l.startswith('select ') and ' limit ' not in l:
                                 output = pd.read_sql(f'{v} limit 1000', self.engine).to_html()
                             else:
