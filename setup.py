@@ -10,7 +10,7 @@ def readme():
         return f.read()
 
 setup(name='mysql_kernel',
-      version='0.3.0',
+      version='0.4.0',
       description='A mysql kernel for Jupyter.',
       long_description=readme(),
       long_description_content_type='text/markdown',
@@ -26,6 +26,7 @@ setup(name='mysql_kernel',
           'Programming Language :: Python :: 3.6',
           'Programming Language :: Python :: 3.7',
           'Programming Language :: Python :: 3.8',
+          'Programming Language :: Python :: 3.9',
           'Intended Audience :: Developers',
           'Intended Audience :: Education',
           'Intended Audience :: Science/Research',

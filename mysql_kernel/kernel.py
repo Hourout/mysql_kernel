@@ -3,7 +3,7 @@ import sqlalchemy as sa
 from ipykernel.kernelbase import Kernel
 
 
-__version__ = '0.3.0'
+__version__ = '0.4.0'
 
 class MysqlKernel(Kernel):
     implementation = 'mysql_kernel'
@@ -54,25 +54,25 @@ class MysqlKernel(Kernel):
                         else:
                             self.engine = sa.create_engine(f'mysql+py{v}')
                     elif l.startswith('create database '):
-                        pd.io.sql.execute(l, con=self.engine)
+                        pd.io.sql.execute(v, con=self.engine)
                     elif l.startswith('drop database '):
-                        pd.io.sql.execute(l, con=self.engine)
+                        pd.io.sql.execute(v, con=self.engine)
                     elif l.startswith('create table '):
-                        pd.io.sql.execute(l, con=self.engine)
+                        pd.io.sql.execute(v, con=self.engine)
                     elif l.startswith('drop table '):
-                        pd.io.sql.execute(l, con=self.engine)
+                        pd.io.sql.execute(v, con=self.engine)
                     elif l.startswith('delete '):
-                        pd.io.sql.execute(l, con=self.engine)
+                        pd.io.sql.execute(v, con=self.engine)
                     elif l.startswith('alter table '):
-                        pd.io.sql.execute(l, con=self.engine)
+                        pd.io.sql.execute(v, con=self.engine)
                     elif l.startswith('insert into '):
-                        pd.io.sql.execute(l, con=self.engine)
+                        pd.io.sql.execute(v, con=self.engine)
                     else:
                         if self.engine:
                             if l.startswith('select ') and ' limit ' not in l:
-                                output = pd.read_sql(l+' limit 1000', self.engine).to_html()
+                                output = pd.read_sql(f'{v} limit 1000', self.engine).to_html()
                             else:
-                                output = pd.read_sql(l, self.engine).to_html()
+                                output = pd.read_sql(v, self.engine).to_html()
                         else:
                             output = 'Unable to connect to Mysql server. Check that the server is running.'
             self.output(output)
