@@ -47,6 +47,7 @@ class MysqlKernel(Kernel):
             for v in sql.split(";"):
                 v = v.rstrip()
                 l = v.lower()
+                l = l.replace('\t',' ').replace('\n',' ')
                 if len(l)>0:
                     if l.startswith('mysql://'):
                         if l.count('@')>1:
